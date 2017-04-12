@@ -30,9 +30,9 @@ void display_scene2(){
 
     glColor3fv(house_top); //Top
     glBegin(GL_POLYGON);
-        glVertex2f(30, 750);
-        glVertex2f(150, 900);
-        glVertex2f(280, 750);
+        glVertex2f(30, 800);
+        glVertex2f(150, 950);
+        glVertex2f(280, 800);
     glEnd();
     glFlush();
 

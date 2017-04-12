@@ -10,6 +10,10 @@ void display(){
     switch(scene_number){
         case 2:display_scene2();
                break;
+
+        case 4:display_scene4();
+               break;
+
         default:
                break;
     }
@@ -23,10 +27,13 @@ void init(){
 }
 
 void keyboard_handler(unsigned char key, int x, int y){
-    if (key == 110){
-        scene_number += 1;
-        printf("Scene Changed to %d\n", scene_number);
+    if (key == 97){ //a
+        scene_number -= 1;
     }
+    if (key == 100){ //d
+        scene_number += 1; 
+    }
+    printf("Scene Changed to %d\n", scene_number);
     display();
 }
 

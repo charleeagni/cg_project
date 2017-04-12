@@ -15,8 +15,8 @@ void draw_rectangle(float x, float y, float w, float h, int fill){
 
         glVertex2f(x, y);
         glVertex2f(x+w, y);
-        glVertex2f(x+w, y+w);
-        glVertex2f(x, y+w);
+        glVertex2f(x+w, y+h);
+        glVertex2f(x, y+h);
     glEnd();
     glFlush();
     

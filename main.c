@@ -42,7 +42,7 @@ int main(int argc, char** argv){
     glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
     glutInitWindowPosition(0, 0);
     glutInitWindowSize(1000, 1000);
-    glutCreateWindow("Scene 2");
+    glutCreateWindow("Effect of Plastic on the Environment");
     init();
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard_handler);

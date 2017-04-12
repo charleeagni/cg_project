@@ -8,7 +8,7 @@ void display_scene4(){
     float factory_chimney[] = {165/255.0, 163/255.0, 154/255.0}; //Gray
     float factory_door[] = {0, 0, 0};
     float factory_window[] = {1, 1, 1};
-    float factory_sewage_pipe[] = {66/255.0, 64/255.0, 59/255.0};
+    float factory_sewage_pipe[] = {66/255.0, 64/255.0, 59/255.0}; //Light Black
 
     glClearColor(1, 1, 1, 0);
     glClear(GL_COLOR_BUFFER_BIT);

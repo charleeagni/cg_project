@@ -59,12 +59,12 @@ void display_scene4(){
 }
 
 void idle_func_scene4(){
-    if (screen_cleared){
-        motion_var += 5;
+    if (screen_cleared >= 300){
         screen_cleared = 0;
     }
-    else{
-        screen_cleared = 1;
+    else{ 
+        motion_var++;
+        screen_cleared += 1;
     }
     glutPostRedisplay();
 }

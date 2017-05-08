@@ -4,7 +4,7 @@
 #include "scenes.h"
 
 
-int scene_number = 0;
+int scene_number = 0, motion_var = 0;
 
 void display(){
     switch(scene_number){
@@ -21,12 +21,12 @@ void display(){
 
 void idle_func(){
     switch(scene_number){
-        case 2:
-            break;
-        case 4: idle_func_scene4();
-            break;
-        default:
-            break;
+        case 2: motion_var++;
+                glutPostRedisplay();
+                break;
+        case 4: motion_var++;
+                glutPostRedisplay();
+                break;
     }
 }
 
@@ -39,9 +39,11 @@ void init(){
 void keyboard_handler(unsigned char key, int x, int y){
     if (key == 97){ //a
         scene_number -= 1;
+        motion_var = 0;
     }
     if (key == 100){ //d
         scene_number += 1; 
+        motion_var = 0;
     }
     printf("Scene Changed to %d\n", scene_number);
     display();

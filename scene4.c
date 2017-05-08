@@ -1,7 +1,6 @@
 #include "scenes.h"
 #include "utilities.h"
 
-int motion_var = 0, screen_cleared = 1;
 
 void display_scene4(){
     float water_blue[] = {66/255.0, 134/255.0, 244/255.0};
@@ -14,13 +13,13 @@ void display_scene4(){
 
     glClearColor(1, 1, 1, 0);
     glClear(GL_COLOR_BUFFER_BIT);
-    
+
     //Water channel
     glColor3fv(water_blue);
     glBegin(GL_POLYGON);
-        glVertex2f(0, 1000);
-        glVertex2f(500, 0);
-        glVertex2f(0, 0);
+    glVertex2f(0, 1000);
+    glVertex2f(500, 0);
+    glVertex2f(0, 0);
     glEnd();
     glFlush();
 
@@ -35,7 +34,7 @@ void display_scene4(){
 
     glColor3fv(factory_door);
     draw_rectangle(base_x + 180, base_y, 40, 100, 1); //Door
-    
+
     glColor3fv(factory_window);
     draw_rectangle(base_x + 50, base_y + 200, 100, 100, 1); //Bottom Left Window
     draw_rectangle(base_x + 250, base_y + 200, 100, 100, 1); //Bottom Right Window  
@@ -51,20 +50,7 @@ void display_scene4(){
 
     //Smoke
     glColor3f(0, 0, 0);
-    if (screen_cleared){
-        draw_circle(base_x+125, base_y+700+motion_var, 30, 1);
-    }
+    draw_circle(base_x+125, base_y+700+motion_var, 30, 1);
     glutSwapBuffers();
 
-}
-
-void idle_func_scene4(){
-    if (screen_cleared >= 300){
-        screen_cleared = 0;
-    }
-    else{ 
-        motion_var++;
-        screen_cleared += 1;
-    }
-    glutPostRedisplay();
 }

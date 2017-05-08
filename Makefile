@@ -1,8 +1,8 @@
 CC = gcc
 
-main: main.o utilities.o scene2.o scene4.o
+main: main.o utilities.o scene2.o scene4.o scene8.o
 	$(CC) -o output main.o utilities.o \
-             scene2.o scene4.o \
+             scene2.o scene4.o scene8.o \
              -lGL -lGLU -lglut -lm
 
 
@@ -17,3 +17,6 @@ scene2.o: scene2.c utilities.h scenes.h
 
 scene4.o: scene4.c utilities.h scenes.h
 	$(CC) -c scene4.c
+	
+scene8.o: scene8.c utilities.h scenes.h
+	$(CC) -c scene8.c

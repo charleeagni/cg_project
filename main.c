@@ -13,7 +13,8 @@ void display(){
 
         case 4:display_scene4();
                break;
-
+        case 8:display_scene8();
+                break;
         default:
                break;
     }

@@ -19,6 +19,16 @@ void display(){
     }
 }
 
+void idle_func(){
+    switch(scene_number){
+        case 2:
+            break;
+        case 4: idle_func_scene4();
+            break;
+        default:
+            break;
+    }
+}
 
 void init(){
     glMatrixMode(GL_PROJECTION);
@@ -39,12 +49,13 @@ void keyboard_handler(unsigned char key, int x, int y){
 
 int main(int argc, char** argv){
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(0, 0);
     glutInitWindowSize(1000, 1000);
     glutCreateWindow("Effect of Plastic on the Environment");
     init();
     glutDisplayFunc(display);
+    glutIdleFunc(idle_func);
     glutKeyboardFunc(keyboard_handler);
     glutMainLoop();
 }

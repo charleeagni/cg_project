@@ -68,4 +68,6 @@ void display_scene2(){
 	glColor3fv(mat_3); //Mat 3
     draw_rectangle(750, 750, 180, 200, 1);
     glFlush();
+
+    glutSwapBuffers();
 }

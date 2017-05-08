@@ -1,6 +1,8 @@
 #include "scenes.h"
 #include "utilities.h"
 
+int motion_var = 0, screen_cleared = 1;
+
 void display_scene4(){
     float water_blue[] = {66/255.0, 134/255.0, 244/255.0};
     float factory_body_bottom[] = {244/255.0, 155/255.0, 66/255.0}; //Light Brown
@@ -47,4 +49,22 @@ void display_scene4(){
     glColor3fv(factory_sewage_pipe);
     draw_rectangle(base_x-100, base_y + 30, 100, 50, 1); //Sewage Pipe
 
+    //Smoke
+    glColor3f(0, 0, 0);
+    if (screen_cleared){
+        draw_circle(base_x+125, base_y+700+motion_var, 30, 1);
+    }
+    glutSwapBuffers();
+
+}
+
+void idle_func_scene4(){
+    if (screen_cleared){
+        motion_var += 5;
+        screen_cleared = 0;
+    }
+    else{
+        screen_cleared = 1;
+    }
+    glutPostRedisplay();
 }

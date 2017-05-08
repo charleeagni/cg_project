@@ -23,7 +23,7 @@ void display_scene8(){
     draw_rectangle(600, 400, 100, 20, 1); 
     draw_rectangle(800, 400, 100, 20, 1);
     draw_rectangle(950, 400, 100, 20, 1);
-    
+   
     //Tree
     glColor3fv(tree_bark);
     draw_rectangle(150, 650, 50, 200, 1);

@@ -1,6 +1,10 @@
 #include "scenes.h"
 #include "utilities.h"
 
+void draw_smoke(int x, int y){
+    draw_circle(x, y, 30, 1);
+    draw_circle(x+20, y+20, 30, 1);
+}
 
 void display_scene4(){
     float water_blue[] = {66/255.0, 134/255.0, 244/255.0};
@@ -50,7 +54,20 @@ void display_scene4(){
 
     //Smoke
     glColor3f(0, 0, 0);
-    draw_circle(base_x+125, base_y+700+motion_var, 30, 1);
+    int lmotion_var = motion_var % 1000;
+    if (base_y + 800 + lmotion_var >= 1100){
+        lmotion_var -= 1100 - (base_y + 800);
+    }
+    
+    draw_smoke(base_x+125, base_y+800+lmotion_var);
+    draw_smoke(base_x+275, base_y+800+lmotion_var);
+    
+/*    //Sewage
+    glColor3f(0, 0, 0);
+    lmotion_var = motion_var % 1000;
+
+    draw_smoke(base_x - 100 - lmotion_var, base_y + 30);
+*/
     glutSwapBuffers();
 
 }

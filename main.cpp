@@ -28,6 +28,9 @@ void idle_func(){
         case 4: motion_var++;
                 glutPostRedisplay();
                 break;
+        case 8: motion_var++;
+                glutPostRedisplay();
+                break;
     }
 }
 

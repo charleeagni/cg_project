@@ -7,6 +7,8 @@ void display_scene8(){
     float road_lines[] = {1, 1, 1};
     float tree_bark[] = {165/255.0, 42/255.0, 42/255.0};
     float tree_leaves[] = {0, 100/255.0, 0};
+    float garbage_can[] = {1, 0, 0};
+    float car[] = {1, 1, 0};
 
     glClearColor(0, 1, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -29,6 +31,15 @@ void display_scene8(){
     draw_rectangle(150, 650, 50, 200, 1);
     glColor3fv(tree_leaves);
     draw_circle(175, 850, 100, 1);
+
+    //Garbage Can
+    glColor3fv(garbage_can);
+    glBegin(GL_POLYGON);
+        glVertex2f(800, 620);
+        glVertex2f(850, 620);
+        glVertex2f(870, 750);
+        glVertex2f(780, 750);
+    glEnd();
 
     glutSwapBuffers();
 }

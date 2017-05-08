@@ -1,4 +1,4 @@
-CC = gcc
+CC = g++
 
 main: main.o utilities.o scene2.o scene4.o scene8.o
 	$(CC) -o output main.o utilities.o \
@@ -6,17 +6,17 @@ main: main.o utilities.o scene2.o scene4.o scene8.o
              -lGL -lGLU -lglut -lm
 
 
-utilities.o: utilities.c utilities.h
-	$(CC) -c utilities.c
+utilities.o: utilities.cpp utilities.h
+	$(CC) -c utilities.cpp
 
-main.o: main.c utilities.h scenes.h
-	$(CC) -c main.c 
+main.o: main.cpp utilities.h scenes.h
+	$(CC) -c main.cpp 
 
-scene2.o: scene2.c utilities.h scenes.h
-	$(CC) -c scene2.c
+scene2.o: scene2.cpp utilities.h scenes.h
+	$(CC) -c scene2.cpp
 
-scene4.o: scene4.c utilities.h scenes.h
-	$(CC) -c scene4.c
+scene4.o: scene4.cpp utilities.h scenes.h
+	$(CC) -c scene4.cpp
 	
-scene8.o: scene8.c utilities.h scenes.h
-	$(CC) -c scene8.c
+scene8.o: scene8.cpp utilities.h scenes.h
+	$(CC) -c scene8.cpp

@@ -10,7 +10,8 @@ void display(){
     switch(scene_number){
         case 2:display_scene2();
                break;
-
+	case 3: display_scene3();
+	      break;
         case 4:display_scene4();
                break;
         case 8:display_scene8();

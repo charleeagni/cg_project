@@ -1,4 +1,4 @@
-#include <GL/glut.h>
+#include <GLUT/glut.h>
 
 float toradian(float degree);
 void draw_rectangle(float x, float y, float w, float h, int fill);

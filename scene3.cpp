@@ -122,7 +122,7 @@ public:
   }
   void sky_full_of_stars() {
     glColor3ub(255,255,255);
-    glPointSize(1);
+    glPointSize(1.5);
     glBegin(GL_POINTS);
 
     for(int i=0;i<1000;i++){

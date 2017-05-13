@@ -3,6 +3,8 @@
 #include<stdio.h>
 #include<math.h>
 #include<stdlib.h>
+#define DEBUG 0
+int motion_var = 0;
 float toradian(float degree){
     return (3.14159/180)*degree;
 }
@@ -44,10 +46,11 @@ void draw_circle(float x, float y, float r, int fill){
 class mountain{
 public:
    mountain(){
-    printf("object created\n" );
+    if(DEBUG)
+      printf("object created\n");
   }
   void draw_mountain() {
-    float a = 300,r = 0.15;
+    float a = 300-motion_var,r = 0.15;
     for(int i =0;i<1000;i++){
       float width_gp = a+(i-1)*r;
       // printf("%f\n",width_gp);
@@ -59,6 +62,7 @@ public:
         draw_rectangle(0.0,1000.0-1*i,width_gp,10.0,1);
       }
       else if(1000.0-1*i < 700 && 1000.0-1*i > 680){
+        if(DEBUG)
         printf("colored\n");
         glColor3ub(255,163,245);
         draw_rectangle(0.0,1000.0-1*i,width_gp,10.0,1);
@@ -76,6 +80,7 @@ public:
       glColor3ub(0,0,0);
       draw_rectangle(width_gp-30,i,180-(i-590),1,1);
     }
+    if(DEBUG)
     printf("final number:(%f,%f)\n",width_gp-30+180-(i-590),i);
   }
   void draw_plastic() {
@@ -112,7 +117,6 @@ public:
       glVertex2f(x+7,y+25);
       glVertex2f(x+7,y+20);
       glVertex2f(x-5,y+20);
-    glEnd();
     glBegin(GL_QUADS);
       glVertex2f(x-5,y+15-7);
       glVertex2f(x+7,y+25-7);
@@ -133,10 +137,12 @@ public:
       y = y%1000;
       if(x>350 && y>650) {
         glVertex2f(x,y);
+        if(DEBUG)
         printf("point added\n" );
       }
       else if(x>650){
         glVertex2f(x,y);
+        if(DEBUG)
         printf("point added\n" );
       }
     }
@@ -147,6 +153,15 @@ public:
   }
 };
 
+void idle_func(){
+  if (motion_var < 0){
+    motion_var = 0;
+  }
+  motion_var++;
+  glutPostRedisplay();
+
+}
+
 void init()
 {
 	glClearColor(0.529,0.808,0.98,1.0);
@@ -156,6 +171,7 @@ void init()
 }
 void myReshape(int w,int h)
 {
+  if(DEBUG)
   printf("resized\n w=%d,h=%d",w,h);
 	glClearColor(0.529,0.808,0.98,1.0);
 	//glClearColor(0.50,0.88,0.96,0);
@@ -178,14 +194,17 @@ void display_scene3(){
   m.draw_road();
   m.draw_fense();
   m.sky_full_of_stars();
-  printf("yolo\n");
+  if(DEBUG)
+    printf("yolo\n");
   glFlush();
   glutSwapBuffers();
 }
 void mouse(int button, int state,int x, int y){
-  printf("called\n");
+  if(DEBUG)
+    printf("called\n");
   if(state == GLUT_DOWN && button == GLUT_LEFT_BUTTON) {
-    printf("x: %d, y: %d",x,y);
+    if(DEBUG)
+      printf("x: %d, y: %d",x,y);
   }
 }
 int main(int argc,char **argv)
@@ -194,6 +213,7 @@ int main(int argc,char **argv)
 	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
 	glutInitWindowSize(1000,1000);
 	glutCreateWindow("Scene1");
+  glutIdleFunc(idle_func);
   glutMouseFunc(mouse);
 	init();
 	//glutReshapeFunc(myReshape);

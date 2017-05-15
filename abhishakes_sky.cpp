@@ -9,15 +9,6 @@ int hights_of_grass[1000];
 int hight_stored = 0;
 //
 int list_of_randoms[1000];
-for (int i = 0; i < 1000; i++) {
-  list_of_randoms[i] = rand()%1000;
-}
-
-
-int list_of_random_colors[];
-for (int i = 0; i < 3000; i++) {
-  list_of_random_colors[i] = rand()%255;
-}
 
 float toradian(float degree){
     return (3.14159/180)*degree;
@@ -213,6 +204,10 @@ void idle_func(){
 }
 int main(int argc,char **argv)
 {
+  for(int i = 0; i < 1000; i++){
+    list_of_randoms[i] = rand()%1000;
+  }
+
 	glutInit(&argc,argv);
 	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
 	glutInitWindowSize(1000,1000);

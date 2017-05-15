@@ -105,7 +105,7 @@ public:
     //printf("object created\n" );
   }
   void sky_full_of_stars() {
-    glPointSize(2);
+    glColor3ub(255,255,255);
     glBegin(GL_POINTS);
     for (int i = 0; i < 1000; i++) {
       glVertex2f(list_of_randoms[i],list_of_randoms[1000-i]);
@@ -122,7 +122,22 @@ public:
   }
   void draw_satelite(float x,float y){
     glColor3ub(100,100,100);
-    draw_rectangle(x,y,10,10,1);
+    draw_rectangle(x,y,20,20,1);
+  }
+  void draw_rocket(int x,int y){
+    glBegin(GL_POLYGON);
+    glVertex2f(x,y);
+    glVertex2f(x+10,y+10);
+    glVertex2f(x+10,y+10+14.142);
+    glVertex2f(x,y+14.142);
+    glEnd();
+    glColor3ub(255,0,0);
+    glBegin(GL_POLYGON);
+
+    glVertex2f(x+10,y+10);
+    glVertex2f(x+20,y+10+14.142);
+    glVertex2f(x+10,y+25);
+    glEnd();
   }
 };
 
@@ -159,8 +174,22 @@ void display_scene3(){
   int masked_motion = motion_var%360;
   int x_val = 500+200*sin(toradian(masked_motion));
   int y_val = 500+200*cos(toradian(masked_motion));
+  if(masked_motion == 180){
+    printf("%u\n", motion_var);
+  }
   m.draw_moon(x_val,y_val);
-  m.draw_satelite(x_val+50*sin(toradian(masked_motion*5)),y_val+50*cos(toradian(masked_motion*5)));
+  // m.draw_satelite(x_val+50*sin(toradian(masked_motion*5)),y_val+50*cos(toradian(masked_motion*5)));
+  if(motion_var%1000 < 230){
+    m.draw_rocket(motion_var%1000*1.4,motion_var%1000*1.4);
+  }
+  else{
+    m.draw_satelite(x_val+50*sin(toradian(masked_motion*-5)),y_val+50*cos(toradian(masked_motion*-5)));
+  }
+  glPointSize(10);
+  glBegin(GL_POINTS);
+    glVertex2f((1000-motion_var)%1000,(700+((1000-motion_var*10)%1000))*10);
+  glEnd();
+  glPointSize(1);
   glFlush();
   glutSwapBuffers();
 }

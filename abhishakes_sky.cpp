@@ -104,168 +104,26 @@ public:
    mountain(){
     //printf("object created\n" );
   }
-  void draw_skyline() {
-
-    for (int i = 0; i < 10; i++) {
-      glColor3ub(70,70,70);
-      int y_rand = 200+rand()%300;
-      draw_rectangle(i*100,500,90,y_rand,1);
-      int cool_val = 200;
-      for(int h=0;h<(y_rand-cool_val)/10;h++){
-        glColor3ub(200,200,0);
-        if(i*100<500) {
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+10,700+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+20,700+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+30,700+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+40,700+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+50,700+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+60,700+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+70,700+h*10,5,5,1);
-        }
-        else{
-          int cool_val = 150;
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+10,650+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+20,650+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+30,650+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+40,650+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+50,650+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+60,650+h*10,5,5,1);
-          if(rand()%3 != 0)
-            draw_rectangle(i*100+70,650+h*10,5,5,1);
-        }
-      }
+  void sky_full_of_stars() {
+    glPointSize(2);
+    glBegin(GL_POINTS);
+    for (int i = 0; i < 1000; i++) {
+      glVertex2f(list_of_randoms[i],list_of_randoms[1000-i]);
     }
-    glColor3ub(70,70,70);
-    draw_rectangle(0,500,500,150,1);
-    draw_rectangle(500,500,500,100,1);
-  }
-  void truck(int x,int y,float angle){
-    glColor3ub(0,50,0);
-    // drawing the trailer
-    glPushMatrix();
-    {
-      glTranslatef(x+200,y,0);
-      glRotatef(360-angle,0,0,1);
-      glTranslatef(-x-200,-y,0);
-
-      glBegin(GL_POLYGON);
-        glVertex2f(x,y);
-        glVertex2f(x+200,y);
-        glVertex2f(x+200,y+100);
-        glVertex2f(x+10,y+100);
-        glVertex2f(x,y+125);
-      glEnd();
-      glColor3ub(150,150,0);
-      draw_rectangle(x+200,y,5,100,1);
-      glColor3ub(0,50,0);
-
-      // back attachment
-      if(angle == 0)
-        draw_rectangle(x+205,y-20,10,120,1);
-      else
-        draw_rectangle(x+205,y+20,10,120,1);
-      glColor3ub(30,30,30);
-
-
-    }
-    glPopMatrix();
-
-    // wheels sit here
-    draw_rectangle(x,y-20,200,20,1);
-    draw_rectangle(x+20,y-40,80,20,1);
-    draw_rectangle(x+185,y-40,10,20,1);
-    // wheels
-    glColor3ub(75,75,75);
-    draw_circle(x+130,y-40,16,1);
-    glColor3ub(30,30,30);
-    draw_circle(x+130,y-40,15,1);
-    glColor3ub(0,0,0);
-    draw_circle(x+130,y-40,5,1);
-    glColor3ub(100,100,100);
-    draw_circle(x+130,y-40,1,1);
-
-    glColor3ub(30,30,30);
-    glColor3ub(75,75,75);
-    draw_circle(x+165,y-40,16,1);
-    glColor3ub(30,30,30);
-    draw_circle(x+165,y-40,15,1);
-    glColor3ub(0,0,0);
-    draw_circle(x+165,y-40,5,1);
-    glColor3ub(100,100,100);
-    draw_circle(x+165,y-40,1,1);
-
-    // engine part
-    glColor3ub(75,0,0);
-    glBegin(GL_POLYGON);
-      glVertex2f(x-3,y);
-      glVertex2f(x-50,y);
-      glVertex2f(x-50,y+50);
-      glVertex2f(x-30,y+100);
-      glVertex2f(x-3,y+100);
     glEnd();
-    glColor3ub(30,30,30);
-    glBegin(GL_POLYGON);
-      glVertex2f(x-3,y);
-      glVertex2f(x-3,y-30);
-      glVertex2f(x-50,y-30);
-      glVertex2f(x-50,y);
-    glEnd();
-
-    // windows
-
-    glBegin(GL_POLYGON);
-      glVertex2f(x-45,y+50);
-      glVertex2f(x-35,y+75);
-      glVertex2f(x-30,y+95);
-      glVertex2f(x-5,y+95);
-      glVertex2f(x-5,y+50);
-    glEnd();
-
-    draw_rectangle(x-15,y+30,10,5,1);
-
-
-    glColor3ub(0,0,0); // equate this to the background color
-
-    draw_half_circle(x-25,y-30,18,1,0);
-
-    glColor3ub(75,75,75);
-    draw_circle(x-25,y-40,16,1);
-    glColor3ub(30,30,30);
-    draw_circle(x-25,y-40,15,1);
-    glColor3ub(0,0,0);
-    draw_circle(x-25,y-40,5,1);
-    glColor3ub(100,100,100);
-    draw_circle(x-25,y-40,1,1);
-
   }
-  void plot_garbage(float x,float y,int amplitude, int size,int count) {
-    while(count!=0) {
-      int xr,yr;
-      xr = rand()%(int)size;
-      xr += x;
-      float sinestuff = sin(toradian((180/size)*x));
-      int y_inter_1 = amplitude*sinestuff;
-      // int yg = (rand()%1000)%(200*(int)sin(((float)toradian(nu_i/size_control)))+200);
-      yr = rand()%y_inter_1;
-      yr += y;
-      plastic_waste2(xr,yr);
-      count--;
-    }
+  void draw_earth(/* arguments */) {
+    glColor3ub(50,50,255);
+    draw_circle(500,500,100,1);
   }
-
+  void draw_moon(float x,float y){
+    glColor3ub(255,255,255);
+    draw_circle(x,y,20,1);
+  }
+  void draw_satelite(float x,float y){
+    glColor3ub(255,255,255);
+    draw_rectangle(x,y,10,10,1);
+  }
 };
 
 void init()
@@ -278,7 +136,7 @@ void init()
 void myReshape(int w,int h)
 {
   printf("resized\n w=%d,h=%d",w,h);
-	glClearColor(0.529,0.808,0.98,1.0);
+	glClearColor(0.0,0.0,0.0,1.0);
 	//glClearColor(0.50,0.88,0.96,0);
 	glViewport(0,0,w,h);
 	glMatrixMode(GL_PROJECTION);
@@ -294,23 +152,15 @@ void myReshape(int w,int h)
 
 void display_scene3(){
   mountain m;
-  glClearColor(0.3,0.3,0.3,1.0);
+  glClearColor(0.0,0.0,0.0,1.0);
   glClear(GL_COLOR_BUFFER_BIT);
-  //printf("yolo\n");
-  // m.draw_skyline();
- //  plot_garbage(float x,float y,int amplitude, int size,int count)
-   m.plot_garbage(    400,    200,          400,      100,     100);
-   glPushMatrix();
-   glScalef(1, -1, 1);
-   m.truck(0+motion_var%1000,200,0);
-   glPopMatrix();
-  if(motion_var%1000<500)
-    m.truck(0+motion_var%1000,200,0);
-  else
-    m.truck(500,200,(motion_var%1000)/100);
+  m.sky_full_of_stars();
+  m.draw_earth();
+  int masked_motion = motion_var%360;
 
+  m.draw_moon(500+200*sin(toradian(masked_motion)),500+200*cos(toradian(masked_motion)));
+  m.draw_satelite(500+200*sin(toradian(masked_motion))+20*sin(toradian(masked_motion*10)),500+200*cos(toradian(masked_motion*10))+20*cos(toradian(masked_motion*10)));
   glFlush();
-
   glutSwapBuffers();
 }
 void mouse(int button, int state,int x, int y){
@@ -325,7 +175,7 @@ void idle_func(){
     motion_var = 0;
   }
   motion_var++;
-  // glutPostRedisplay();
+  glutPostRedisplay();
 }
 int main(int argc,char **argv)
 {

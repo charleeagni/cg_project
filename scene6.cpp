@@ -23,7 +23,39 @@ void draw_rectangle(float x, float y, float w, float h, int fill){
     glEnd();
     glFlush();
 }
-
+void draw_qus(float x,float y){
+    glBegin(GL_POLYGON);
+      glVertex2f(x+1,0);
+      int x1 = rand()%10;
+      if(rand()%2 == 0){
+        glVertex2f(1+x,0);
+        glVertex2f(1+x-x1,y);
+        glVertex2f(1+x-x1+3,y);
+        glVertex2f(1+x+3,0);
+      }
+      else {
+        glVertex2f(1+x,0);
+        glVertex2f(1+x+x1,y);
+        glVertex2f(1+x+x1+3,y);
+        glVertex2f(1+x+3,0);
+      }
+      glVertex2f(1+x,0);
+      glVertex2f(1+x+x1,y);
+      glVertex2f(1+x+x1+3,y);
+      glVertex2f(1+x+3,0);
+      // glVertex2f(x+1,0);
+      // int x1 = rand()%3;
+      // glVertex2f(1+x+x1,100);
+      // int x2 = rand()%3;
+      // glVertex2f(1+x+x2,200);
+      // int x3 = rand()%3;
+      // glVertex2f(1+x+x3,y-200);
+      // glVertex2f(1+x+x3+2,y-200);
+      // glVertex2f(1+x+x2+2,200);
+      // glVertex2f(1+x+x1+2,100);
+      // glVertex2f(1+x+1+2,0);
+    glEnd();
+}
 
 void draw_circle(float x, float y, float r, int fill){
     float i;
@@ -137,9 +169,11 @@ public:
         if(i == 999)
             hight_stored = 1;
       }
+
       float y = hights_of_grass[i];
-      if(((int)i)%7 == 0)
-        draw_rectangle(x,0,3,y,1);
+      if(((int)i)%10 == 0){
+          draw_qus(x,y);
+      }
     }
   }
   void draw_dirt(){
@@ -198,13 +232,13 @@ void display_scene3(){
   m.draw_fish(700.0,700.0,25.0);
   m.draw_ground();
   m.draw_dirt();
-  glColor3ub(0,0,0);
-  if(motion_var%1000>500){
-    plastic_waste2(700+motion_var%1000/10,600+motion_var%1000/10);
-  }
-  else{
-    plastic_waste2(700-motion_var%1000/10,600-motion_var%1000/10);
-  }
+  // glColor3ub(0,0,0);
+  // if(motion_var%1000>500){
+  //   plastic_waste2(700+motion_var%1000/10,600+motion_var%1000/10);
+  // }
+  // else{
+  //   plastic_waste2(700-motion_var%1000/10,600-motion_var%1000/10);
+  // }
   glFlush();
   glutSwapBuffers();
 }
@@ -220,7 +254,7 @@ void idle_func(){
     motion_var = 0;
   }
   motion_var++;
-  glutPostRedisplay();
+  // glutPostRedisplay();
 
 }
 int main(int argc,char **argv)

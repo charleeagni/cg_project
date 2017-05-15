@@ -158,7 +158,7 @@ void idle_func(){
     motion_var = 0;
   }
   motion_var++;
-  glutPostRedisplay();
+  // glutPostRedisplay();
 
 }
 

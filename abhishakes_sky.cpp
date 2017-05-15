@@ -121,7 +121,7 @@ public:
     draw_circle(x,y,20,1);
   }
   void draw_satelite(float x,float y){
-    glColor3ub(255,255,255);
+    glColor3ub(100,100,100);
     draw_rectangle(x,y,10,10,1);
   }
 };
@@ -157,9 +157,10 @@ void display_scene3(){
   m.sky_full_of_stars();
   m.draw_earth();
   int masked_motion = motion_var%360;
-
-  m.draw_moon(500+200*sin(toradian(masked_motion)),500+200*cos(toradian(masked_motion)));
-  m.draw_satelite(500+200*sin(toradian(masked_motion))+20*sin(toradian(masked_motion*10)),500+200*cos(toradian(masked_motion*10))+20*cos(toradian(masked_motion*10)));
+  int x_val = 500+200*sin(toradian(masked_motion));
+  int y_val = 500+200*cos(toradian(masked_motion));
+  m.draw_moon(x_val,y_val);
+  m.draw_satelite(x_val+50*sin(toradian(masked_motion*5)),y_val+50*cos(toradian(masked_motion*5)));
   glFlush();
   glutSwapBuffers();
 }

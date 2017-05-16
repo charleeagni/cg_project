@@ -1,0 +1,73 @@
+#include "scenes.h"
+#include "utilities.h"
+
+
+float factory_body_bottom[3]; //Light Brown
+float factory_body_top[] = {237/255.0, 125/255.0, 14/255.0}; //Dark Brown
+
+float factory_chimney[] = {165/255.0, 163/255.0, 154/255.0}; //Gray
+float factory_door[] = {0, 0, 0};
+float factory_window[] = {1, 1, 1};
+
+void make_factory(int base_x, int base_y, int factor){
+
+    glColor3fv(factory_body_bottom);
+    draw_rectangle(base_x, base_y, 400/factor, 400/factor, 1); //Base
+
+    glColor3fv(factory_body_top);
+    draw_rectangle(base_x+25/factor, base_y+400/factor, 350/factor, 300/factor, 1); //Top
+
+    glColor3fv(factory_door);
+    draw_rectangle(base_x + 180/factor, base_y, 40/factor, 100/factor, 1); //Door
+
+    glColor3fv(factory_window);
+    draw_rectangle(base_x + 50/factor, base_y + 200/factor, 100/factor, 100/factor, 1); //Bottom Left Window
+    draw_rectangle(base_x + 250/factor, base_y + 200/factor, 100/factor, 100/factor, 1); //Bottom Right Window
+    draw_rectangle(base_x+(25+25)/factor, base_y+(400+30)/factor, 80/factor, 200/factor, 1); //Top Left Window
+    draw_rectangle(base_x+(25+240)/factor, base_y+(400+30)/factor, 80/factor, 200/factor, 1); //Top Right Window
+
+    glColor3fv(factory_chimney);
+    draw_rectangle(base_x+100/factor, base_y+(400+300)/factor, 30/factor, 100/factor, 1); //Chimney Left
+    draw_rectangle(base_x+(100+150)/factor, base_y+(400+300)/factor, 30/factor, 100/factor, 1); //Chimney Right
+}
+
+void display_scene4(){
+    float road[] = {0, 0, 0};
+    float road_lines[] = {1, 1, 1};
+    float tree_bark[] = {165/255.0, 42/255.0, 42/255.0};
+    float tree_leaves[] = {0, 100/255.0, 0};
+    float garbage_can[] = {1, 0, 0};
+    float car[] = {1, 1, 0};
+
+
+    glClearColor(0, 1, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    //Road
+    glColor3fv(road);
+    draw_rectangle(0, 200, 1000, 400, 1);
+
+    //Road Lines
+    glColor3fv(road_lines);
+    draw_rectangle(0, 400, 100, 20, 1);
+    draw_rectangle(200, 400, 100, 20, 1);
+    draw_rectangle(400, 400, 100, 20, 1);
+    draw_rectangle(600, 400, 100, 20, 1);
+    draw_rectangle(800, 400, 100, 20, 1);
+    draw_rectangle(950, 400, 100, 20, 1);
+
+    //Factory
+    factory_body_bottom[0] = 244/255.0;
+    factory_body_bottom[1] = 155/255.0;
+    factory_body_bottom[2] = 66/255.0;
+
+    make_factory(200, 600, 2);
+
+    factory_body_bottom[0] = 1;
+    factory_body_bottom[1] = 1;
+    factory_body_bottom[2] = 1;
+
+    make_factory(500, 600, 2);
+
+    glutSwapBuffers();
+}

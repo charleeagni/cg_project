@@ -1,14 +1,82 @@
-// #include "scenes.h"
-// #include "utilities.h"
+#include<stdio.h>
+#include <GLUT/glut.h>
+#include<stdio.h>
 #include<math.h>
-#include<GLUT/glut.h>
+#include<stdlib.h>
 
+int motion_var = 0;
 float factory_body_bottom[3]; //Light Brown
 float factory_body_top[] = {237/255.0, 125/255.0, 14/255.0}; //Dark Brown
 
 float factory_chimney[] = {165/255.0, 163/255.0, 154/255.0}; //Gray
 float factory_door[] = {0, 0, 0};
 float factory_window[] = {1, 1, 1};
+float toradian(float degree){
+    return (3.14159/180)*degree;
+}
+
+void draw_rectangle(float x, float y, float w, float h, int fill){
+    if (fill)
+        glBegin(GL_POLYGON);
+    else
+        glBegin(GL_LINE_LOOP);
+        glVertex2f(x, y);
+        glVertex2f(x+w, y);
+        glVertex2f(x+w, y+h);
+        glVertex2f(x, y+h);
+    glEnd();
+    glFlush();
+}
+void draw_qus(float x,float y){
+    glBegin(GL_POLYGON);
+      glVertex2f(x+1,0);
+      int x1 = rand()%10;
+      if(rand()%2 == 0){
+        glVertex2f(1+x,0);
+        glVertex2f(1+x-x1,y);
+        glVertex2f(1+x-x1+3,y);
+        glVertex2f(1+x+3,0);
+      }
+      else {
+        glVertex2f(1+x,0);
+        glVertex2f(1+x+x1,y);
+        glVertex2f(1+x+x1+3,y);
+        glVertex2f(1+x+3,0);
+      }
+      glVertex2f(1+x,0);
+      glVertex2f(1+x+x1,y);
+      glVertex2f(1+x+x1+3,y);
+      glVertex2f(1+x+3,0);
+      // glVertex2f(x+1,0);
+      // int x1 = rand()%3;
+      // glVertex2f(1+x+x1,100);
+      // int x2 = rand()%3;
+      // glVertex2f(1+x+x2,200);
+      // int x3 = rand()%3;
+      // glVertex2f(1+x+x3,y-200);
+      // glVertex2f(1+x+x3+2,y-200);
+      // glVertex2f(1+x+x2+2,200);
+      // glVertex2f(1+x+x1+2,100);
+      // glVertex2f(1+x+1+2,0);
+    glEnd();
+}
+
+void draw_circle(float x, float y, float r, int fill){
+    float i;
+    float x_cord, y_cord;
+    if (fill)
+        glBegin(GL_POLYGON);
+    else
+        glBegin(GL_POINTS);
+
+    for (i = 0; i < 360; i+= 0.6){
+        x_cord = x + r*cos(toradian((float)i));
+        y_cord = y + r*sin(toradian((float)i));
+        glVertex2f(x_cord, y_cord);
+    }
+    glEnd();
+    glFlush();
+}
 void draw_half_circle(float x, float y, float r, int fill,float angle){
     float i;
     float x_cord, y_cord;
@@ -25,6 +93,39 @@ void draw_half_circle(float x, float y, float r, int fill,float angle){
     }
     glEnd();
     glFlush();
+}
+
+void plastic_waste(int x, int y)
+{
+    glBegin(GL_POLYGON);
+    glVertex2f(x,y);
+    glVertex2f(x + 32,y - 10);
+    glVertex2f(x + 46,y + 31);
+    glVertex2f(x + 62,y + 10);
+    glVertex2f(x + 33,y - 20);
+    glEnd();
+}
+
+void plastic_waste2(int x, int y)
+{
+    glBegin(GL_POLYGON);
+    glVertex2f(x,y);
+    glVertex2f(x + 26,y - 20);
+    glVertex2f(x + 46,y + 10);
+    glVertex2f(x + 56,y);
+    glVertex2f(x + 31,y - 20);
+    glVertex2f(x + 3,y - 18);
+    glEnd();
+}
+
+void plastic_waste3(int x, int y)
+{
+    glBegin(GL_POLYGON);
+    glVertex2f(x , y);
+    glVertex2f(x + 15, y + 5);
+    glVertex2f(x + 22 , y - 20);
+    glVertex2f(x + 4, y - 12);
+    glEnd();
 }
 
 void make_factory(int base_x, int base_y, int factor){
@@ -158,7 +259,7 @@ void display_scene4(){
     float car[] = {1, 1, 0};
 
 
-    glClearColor(0, 1, 0, 0);
+    glClearColor(135/255.0, 206/255.0, 235/255.0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
 
     //Road
@@ -174,19 +275,57 @@ void display_scene4(){
     draw_rectangle(800, 400, 100, 20, 1);
     draw_rectangle(950, 400, 100, 20, 1);
 
-    truck(motion_var%1000,300,0);
+    truck(1000-motion_var%1000,300,0);
     //Factory
     factory_body_bottom[0] = 244/255.0;
     factory_body_bottom[1] = 155/255.0;
     factory_body_bottom[2] = 66/255.0;
 
-    make_factory(200, 600, 2);
+    make_factory(300, 600, 2);
 
-    factory_body_bottom[0] = 1;
-    factory_body_bottom[1] = 1;
-    factory_body_bottom[2] = 1;
+    factory_body_bottom[0] = 33/255.0;
+    factory_body_bottom[1] = 200/255.0;
+    factory_body_bottom[2] = 170/255.0;
 
-    make_factory(500, 600, 2);
+    make_factory(600, 600, 2);
+
+
+    factory_body_bottom[0] = 45/255.0;
+    factory_body_bottom[1] = 79/255.0;
+    factory_body_bottom[2] = 200/255.0;
+
+    make_factory(000, 600, 2);
+
+    glColor3ub(0, 255, 0);
+    draw_rectangle(0, 0, 1000, 200, 1);
 
     glutSwapBuffers();
+}
+void init()
+{
+	glClearColor(0.0,0.0,0.98,1.0);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(0,1000,0,1000);
+}
+
+void idle_func(){
+  if (motion_var < 0){
+    motion_var = 0;
+  }
+  motion_var++;
+  glutPostRedisplay();
+}
+int main(int argc,char **argv)
+{
+	glutInit(&argc,argv);
+	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
+	glutInitWindowSize(1000,1000);
+	glutCreateWindow("Scene1");
+  // glutMouseFunc(mouse);
+	init();
+  glutIdleFunc(idle_func);
+	//glutReshapeFunc(myReshape);
+	glutDisplayFunc(display_scene4);
+	glutMainLoop();
 }

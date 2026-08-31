@@ -4,20 +4,21 @@
 #include "scenes.h"
 
 
-int scene_number = 0, motion_var = 0;
+int scene_number = 2, motion_var = 0;
+
+const int scenes[] = {2, 4, 8};
+const int scene_count = sizeof(scenes) / sizeof(scenes[0]);
 
 void display(){
     switch(scene_number){
         case 2:display_scene2();
                break;
-	case 3: display_scene3();
-	      break;
         case 4:display_scene4();
                break;
         case 8:display_scene8();
                 break;
-        default:
-               break;
+        default: display_scene2();
+                 break;
     }
 }
 
@@ -42,16 +43,30 @@ void init(){
 }
 
 void keyboard_handler(unsigned char key, int x, int y){
-    if (key == 97){ //a
-        scene_number -= 1;
-        motion_var = 0;
+    (void)x;
+    (void)y;
+
+    if (key == 27 || key == 'q' || key == 'Q') {
+        exit(0);
     }
-    if (key == 100){ //d
-        scene_number += 1; 
-        motion_var = 0;
+
+    int direction = 0;
+    if (key == 'a' || key == 'A') {
+        direction = -1;
+    } else if (key == 'd' || key == 'D') {
+        direction = 1;
     }
-    printf("Scene Changed to %d\n", scene_number);
-    display();
+
+    if (direction != 0) {
+        int current = 0;
+        while (current < scene_count && scenes[current] != scene_number) {
+            current++;
+        }
+        scene_number = scenes[(current + direction + scene_count) % scene_count];
+        motion_var = 0;
+        printf("Scene changed to %d\n", scene_number);
+        glutPostRedisplay();
+    }
 }
 
 int main(int argc, char** argv){

@@ -8,7 +8,6 @@ void display_scene8(){
     float tree_bark[] = {165/255.0, 42/255.0, 42/255.0};
     float tree_leaves[] = {0, 100/255.0, 0};
     float garbage_can[] = {1, 0, 0};
-    float car[] = {1, 1, 0};
 
     glClearColor(0, 1, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);

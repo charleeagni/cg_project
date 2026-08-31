@@ -1,8 +1,12 @@
 
 
+#ifndef SCENES_H
+#define SCENES_H
+
 void display_scene2();
-void display_scene3();
 void display_scene4();
 void display_scene8();
 
 extern int motion_var;
+
+#endif
